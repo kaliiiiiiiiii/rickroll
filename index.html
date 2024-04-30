@@ -34,6 +34,12 @@
                 if(vidElem.muted){
                     vidElem.muted = false
                 }
+                if(!vidElem.muted){
+                    vidElem.removeEventListener("click", this)
+                    vidElem.removeEventListener("mousedown", this)
+                    vidElem.removeEventListener("keydown", this)
+                    vidElem.removeEventListener("touch", this)
+                }
             }
             function loader(){
                 const vidElem = document.querySelector("#myVideo")
