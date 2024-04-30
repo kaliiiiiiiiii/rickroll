@@ -1,56 +1,46 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>You've been pawned!</title>
         <style>
-            #myVideo {
+            #Video {
+              max-width: 130%;
+              max-height: 120%;
+              left: 50%;
               position: fixed;
-              right: 0;
-              bottom: 0;
-              width: 100%;
-              height: auto;
-            }
-
-            /* Add some content at the bottom of the video/page */
-            .content {
-              position: fixed;
-              bottom: 0;
-              background: rgba(0, 0, 0, 0.5);
-              color: #f1f1f1;
-              width: 100%;
-              padding: 20px;
+              top: 50%;
+              transform: translate(-50%, -50%);
             }
         </style>
     </head>
-   <body>
-       <video autoplay muted loop id="myVideo">
-
+   <body style="background-color:black;">
+       <video autoplay muted loop id="Video">
             <source src="rickroll.mp4" type="video/mp4">
-
             Sorry, your browser doesn't support embedded videos.
         </video>
         <script>
             function unMute(){
-                const vidElem = document.querySelector("#myVideo")
+                const vidElem = document.querySelector("#Video")
                 if(vidElem.muted){
+                    vidElem.volume=1
                     vidElem.muted = false
                 }
                 if(!vidElem.muted){
-                    vidElem.removeEventListener("click", this)
-                    vidElem.removeEventListener("mousedown", this)
-                    vidElem.removeEventListener("keydown", this)
-                    vidElem.removeEventListener("touch", this)
+                    const body = document.body
+                    body.removeEventListener("click", this)
+                    body.removeEventListener("mousedown", this)
+                    body.removeEventListener("keydown", this)
+                    body.removeEventListener("touch", this)
                 }
             }
             function loader(){
-                const vidElem = document.querySelector("#myVideo")
-                vidElem.volume=1
-                vidElem.addEventListener("click", unMute)
-                vidElem.addEventListener("mousedown", unMute)
-                vidElem.addEventListener("keydown", unMute)
-                vidElem.addEventListener("touch", unMute)
+                const body = document.body
+                body.addEventListener("click", unMute)
+                body.addEventListener("mousedown", unMute)
+                body.addEventListener("keydown", unMute)
+                body.addEventListener("touch", unMute)
             }
             window.onload = loader
-
        </script>
    </body>
 </html>
