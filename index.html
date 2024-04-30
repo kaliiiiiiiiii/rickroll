@@ -26,19 +26,18 @@
                     vidElem.muted = false
                 }
                 if(!vidElem.muted){
-                    const body = document.body
-                    body.removeEventListener("click", this)
-                    body.removeEventListener("mousedown", this)
-                    body.removeEventListener("keydown", this)
-                    body.removeEventListener("touch", this)
+                    document.removeEventListener("click", this)
+                    document.removeEventListener("mousedown", this)
+                    document.removeEventListener("keydown", this)
+                    document.removeEventListener("touch", this)
                 }
             }
             function loader(){
                 const body = document.body
-                body.addEventListener("click", unMute)
-                body.addEventListener("mousedown", unMute)
-                body.addEventListener("keydown", unMute)
-                body.addEventListener("touch", unMute)
+                document.addEventListener("click", unMute)
+                document.addEventListener("mousedown", unMute)
+                document.addEventListener("keydown", unMute)
+                document.addEventListener("touch", unMute)
             }
             window.onload = loader
        </script>
