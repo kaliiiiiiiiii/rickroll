@@ -53,6 +53,8 @@
                     document.removeEventListener("click", this)
                     document.removeEventListener("mousedown", this)
                     document.removeEventListener("keydown", this)
+                    document.removeEventListener("keyup", this)
+                    document.removeEventListener("touchstart", this)
                     document.removeEventListener("touch", this)
                 }
                 if(vidElem.paused){
@@ -66,7 +68,9 @@
                 document.addEventListener("click", unMute)
                 document.addEventListener("mousedown", unMute)
                 document.addEventListener("keydown", unMute)
-                document.addEventListener("touch", unMute)
+                document.addEventListener("keyup", unMute)
+                document.addEventListener("touchstart", unMute)
+                document.removeEventListener("touch", this)
             }
             window.onload = loader
             window.onbeforeunload = () => {return false;}
