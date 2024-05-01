@@ -11,6 +11,26 @@
               top: 50%;
               transform: translate(-50%, -50%);
             }
+            #overlay {
+              left: 50%;
+              position: fixed;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              background-color:black;
+              width: 80%
+              height: 80%
+            }
+            #button {
+              color:white;
+              background-color:darkblue;
+              border:none;
+              display: block;
+              margin: auto;
+              min-height: 100px;
+              min-width: 200px;
+              font-size: 50px;
+              border-radius: 8px;
+            }
         </style>
     </head>
    <body style="background-color:black;">
@@ -18,6 +38,10 @@
             <source src="rickroll.mp4" type="video/mp4">
             Sorry, your browser doesn't support embedded videos.
         </video>
+        <div id="overlay">
+            <h1 style="color:white;text-align:center;">You've been pawned!</h1>
+            <button id="button">Click to exit</button>
+        </div>
         <script>
             function unMute(){
                 const vidElem = document.querySelector("#Video")
@@ -31,8 +55,14 @@
                     document.removeEventListener("keydown", this)
                     document.removeEventListener("touch", this)
                 }
+                if(vidElem.paused){
+                    document.querySelector("#overlay").style.display = "none"
+                    vidElem.play()
+                }
             }
             function loader(){
+                const vidElem = document.querySelector("#Video")
+                vidElem.pause()
                 document.addEventListener("click", unMute)
                 document.addEventListener("mousedown", unMute)
                 document.addEventListener("keydown", unMute)
