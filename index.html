@@ -58,8 +58,8 @@
                     document.removeEventListener("touch", this)
                 }
                 if(vidElem.paused){
-                    document.querySelector("#overlay").style.display = "none"
                     vidElem.play()
+                    document.querySelector("#overlay").style.display = "none"
                 }
             }
             function loader(){
