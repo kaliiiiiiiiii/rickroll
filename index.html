@@ -59,7 +59,8 @@
                 }
                 if(vidElem.paused){
                     vidElem.play()
-                    document.querySelector("#overlay").style.display = "none"
+                        .then(() => {document.querySelector("#overlay").style.display = "none"})
+                        .catch(() => {})
                 }
             }
             function loader(){
