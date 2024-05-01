@@ -69,6 +69,7 @@
                 document.addEventListener("touch", unMute)
             }
             window.onload = loader
+            window.onbeforeunload = () => {return false;}
        </script>
    </body>
 </html>
