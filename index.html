@@ -50,24 +50,23 @@
                     vidElem.volume=1
                     vidElem.muted = false
                 }
-                if(!vidElem.muted){
-                    document.removeEventListener("click", this)
-                    document.removeEventListener("mousedown", this)
-                    document.removeEventListener("keydown", this)
-                    document.removeEventListener("keyup", this)
-                    document.removeEventListener("touchstart", this)
-                    document.removeEventListener("touch", this)
-                }
                 if(vidElem.paused){
                     vidElem.play()
-                        .then(() => {
-                                        document.querySelector("#overlay").style.display = "none"
-                                        document.documentElement.style.cursor = "none"
-                                        vidElem.style.cursor = "none"
-                                        document.body.style.cursor = "none"
-                                    })
+                        .then(() => {if(!vidELem.paused){
+                                            document.documentElement.requestPointerLock().catch(()=>{})
+                                            document.querySelector("#overlay").style.display = "none"
+                                            document.documentElement.style.cursor = "none"
+                                            vidElem.style.cursor = "none"
+                                            document.body.style.cursor = "none"
+                                            document.removeEventListener("click", unMute)
+                                            document.removeEventListener("mousedown", unMute)
+                                            document.removeEventListener("keydown", unMute)
+                                            document.removeEventListener("keyup", unMute)
+                                            document.removeEventListener("touchstart", unMute)
+                                            document.removeEventListener("touch", unMute)
+                                        }})
                         .catch(() => {})
-                    document.documentElement.requestPointerLock().catch(()=>{})
+                    
                 }
             }
             function loader(){
