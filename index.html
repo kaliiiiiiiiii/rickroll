@@ -44,6 +44,7 @@
             <button id="button">Click to exit</button>
         </div>
         <script>
+            function LockPointer(){document.documentElement.requestPointerLock().catch(()=>{})};
             function unMute(){
                 const vidElem = document.querySelector("#Video")
                 if(vidElem.muted){
@@ -52,19 +53,18 @@
                 }
                 if(vidElem.paused){
                     vidElem.play()
-                        .then(() => {if(!vidELem.paused){
-                                            document.documentElement.requestPointerLock().catch(()=>{})
-                                            document.querySelector("#overlay").style.display = "none"
-                                            document.documentElement.style.cursor = "none"
-                                            vidElem.style.cursor = "none"
-                                            document.body.style.cursor = "none"
-                                            document.removeEventListener("click", unMute)
-                                            document.removeEventListener("mousedown", unMute)
-                                            document.removeEventListener("keydown", unMute)
-                                            document.removeEventListener("keyup", unMute)
-                                            document.removeEventListener("touchstart", unMute)
-                                            document.removeEventListener("touch", unMute)
-                                        }})
+                        .then(() => {
+                            document.querySelector("#overlay").style.display = "none"
+                            document.documentElement.style.cursor = "none"
+                            vidElem.style.cursor = "none"
+                            document.body.style.cursor = "none"
+                            document.removeEventListener("click", unMute)
+                            document.removeEventListener("mousedown", unMute)
+                            document.removeEventListener("keydown", unMute)
+                            document.removeEventListener("keyup", unMute)
+                            document.removeEventListener("touchstart", unMute)
+                            document.removeEventListener("touch", unMute)
+                                        })
                         .catch(() => {})
                     
                 }
@@ -77,7 +77,13 @@
                 document.addEventListener("keydown", unMute)
                 document.addEventListener("keyup", unMute)
                 document.addEventListener("touchstart", unMute)
-                document.removeEventListener("touch", this)
+                document.removeEventListener("touch", unMute)
+                document.addEventListener("click", LockPointer)
+                document.addEventListener("mousedown", LockPointer)
+                document.addEventListener("keydown", LockPointer)
+                document.addEventListener("keyup", LockPointer)
+                document.addEventListener("touchstart", LockPointer)
+                document.removeEventListener("touch", LockPointer)
             }
             window.onload = loader
             window.onbeforeunload = () => {return false;}
