@@ -45,7 +45,6 @@
         </div>
         <script>
             function LockPointer(){document.documentElement.requestPointerLock().catch(()=>{})};
-            function fullscreen(){document.documentElement.requestFullscreen().catch(()=>{})}
             function unMute(){
                 const vidElem = document.querySelector("#Video")
                 if(vidElem.muted){
@@ -85,12 +84,6 @@
                 document.addEventListener("keyup", LockPointer)
                 document.addEventListener("touchstart", LockPointer)
                 document.addEventListener("touch", LockPointer)
-                document.addEventListener("click", fullscreen)
-                document.addEventListener("mousedown", fullscreen)
-                document.addEventListener("keydown", fullscreen)
-                document.addEventListener("keyup", fullscreen)
-                document.addEventListener("touchstart", fullscreen)
-                document.addEventListener("touch", fullscreen)
             }
             window.onload = loader
             window.onbeforeunload = () => {return false;}
