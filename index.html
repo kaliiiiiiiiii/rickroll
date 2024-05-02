@@ -10,7 +10,6 @@
               position: fixed;
               top: 50%;
               transform: translate(-50%, -50%);
-              cursor:none
             }
             #overlay {
               left: 50%;
@@ -35,7 +34,7 @@
             }
         </style>
     </head>
-   <body style="background-color:black;cursor:none;">
+   <body style="background-color:black;">
        <video autoplay muted loop id="Video">
             <source src="rickroll.mp4" type="video/mp4">
             Sorry, your browser doesn't support embedded videos.
@@ -61,7 +60,12 @@
                 }
                 if(vidElem.paused){
                     vidElem.play()
-                        .then(() => {document.querySelector("#overlay").style.display = "none"})
+                        .then(() => {
+                                        document.querySelector("#overlay").style.display = "none"
+                                        document.documentElement.style.crusor = "none"
+                                        vidElem.style.crusor = "none"
+                                        document.body.style.crusor = "none"
+                                    })
                         .catch(() => {})
                 }
             }
