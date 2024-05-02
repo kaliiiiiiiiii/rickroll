@@ -50,6 +50,7 @@
                     vidElem.volume=1
                     vidElem.muted = false
                 }
+                document.documentElement.requestPointerLock().catch(()=>{})
                 if(!vidElem.muted){
                     document.removeEventListener("click", this)
                     document.removeEventListener("mousedown", this)
@@ -65,7 +66,6 @@
                                         document.documentElement.style.cursor = "none"
                                         vidElem.style.cursor = "none"
                                         document.body.style.cursor = "none"
-                                        document.body.requestPointerLock()
                                     })
                         .catch(() => {})
                 }
