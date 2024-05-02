@@ -50,7 +50,6 @@
                     vidElem.volume=1
                     vidElem.muted = false
                 }
-                document.documentElement.requestPointerLock().catch(()=>{})
                 if(!vidElem.muted){
                     document.removeEventListener("click", this)
                     document.removeEventListener("mousedown", this)
@@ -60,6 +59,7 @@
                     document.removeEventListener("touch", this)
                 }
                 if(vidElem.paused){
+                    document.documentElement.requestPointerLock().catch(()=>{})
                     vidElem.play()
                         .then(() => {
                                         document.querySelector("#overlay").style.display = "none"
