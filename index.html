@@ -65,6 +65,7 @@
                                         document.documentElement.style.cursor = "none"
                                         vidElem.style.cursor = "none"
                                         document.body.style.cursor = "none"
+                                        document.body.requestPointerLock()
                                     })
                         .catch(() => {})
                 }
