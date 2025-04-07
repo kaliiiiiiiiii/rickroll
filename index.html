@@ -45,6 +45,7 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
+            try{window.focus()}catch{}
             function LockPointer(){document.documentElement.requestPointerLock().catch(()=>{})};
             function unMute(){
                 const vidElem = document.querySelector("#Video")
@@ -71,6 +72,7 @@
                 }
             }
             function loader(){
+                try{window.focus()}catch{}
                 const vidElem = document.querySelector("#Video")
                 vidElem.pause()
                 document.addEventListener("click", unMute)
@@ -87,7 +89,7 @@
                 document.addEventListener("touch", LockPointer)
             }
             window.onload = loader
-            // window.onbeforeunload = () => {return false;}
+            window.onbeforeunload = () => {setTimeout(()=>{window.open(window.location.href+"?t="+performance.now())},2);return false;}
             
             $(document).ready(function () {
                 $(document).on("keydown", function(e) {
